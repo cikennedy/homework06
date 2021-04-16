@@ -35,9 +35,9 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 [Building a Weather app using HTML, CSS & Javascript in 2020](https://www.youtube.com/watch?v=n4dtwWgRueI)
 
-GitHub - Weather Dashboard - https://github.com/mauricechouam/Weather-Dashboard
+[GitHub - Weather Dashboard](https://github.com/mauricechouam/Weather-Dashboard)
 
-GitHub - Weather Dashboard - https://github.com/saryjamie/weather-dashboard 
+[GitHub - Weather Dashboard](https://github.com/saryjamie/weather-dashboard)
 
 
 ## License
