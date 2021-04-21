@@ -25,3 +25,6 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city 
 */
 
+// Set variable for API key
+var weatherAPI = "1ab858a5505d5908820588cc1ee2f9e5";
+
