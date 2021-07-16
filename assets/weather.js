@@ -1,6 +1,7 @@
 // Set variables for API key and url 
 var apiKey = "1ab858a5505d5908820588cc1ee2f9e5";
 var apiURL = "https://api.openweathermap.org";
+var searchHistory = [];
 
 // Variables for query selectors for current weather and search 
 var searchForm = document.querySelector('#search-form');
@@ -26,6 +27,35 @@ var date = dayjs().format('MM/DD/YYYY');
 // var humidity = weather.humidity;
 // var icon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
+
+const searchFormHandler = (event) => {
+  // Stop the browser from submitting the form so we can do so with JavaScript
+  event.preventDefault();
+  // Gather the data from the form elements on the page
+  const city = searchInput.value.trim();
+
+  if (city) {
+    getCurrentWeather(city);
+    getForecast(city);
+    searchHistory.unshift({city});
+    searchInput.value = "";
+  } else {
+    alert("Please enter a city to search.");
+  }
+  // add save search and past search functions, include those here 
+};
+
+const saveSearch = () => {
+  localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+};
+
+
+
+
+
+
+
+// Create function to fetch current weather 
 searchButton.addEventListener('click', function(event) { 
   fetch(`${apiURL}/data/2.5/weather?q=${searchInput}&appid=${apiKey}`)
   .then(res => res.json())
@@ -51,4 +81,9 @@ searchButton.addEventListener('click', function(event) {
   })
 })
 
+// Create function for current weather 
 
+// Create function for five day forecast 
+
+
+searchForm.addEventListener('submit', searchFormHandler);
