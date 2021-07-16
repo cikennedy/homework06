@@ -71,7 +71,10 @@ const renderCurrentWeather = (weather, searchCity) => {
   var wind_speed = weather.wind.speed;
   var uvi = weather.uvi;
   var humidity = weather.main.humidity;
-  var icon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+
+  var weatherIcon = document.createElement("img");
+  weatherIcon.setAttribute("src", `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`);
+  currentWeatherContainer.appendChild(weatherIcon);
 
   currentWeatherHeader.innerHTML = "Current Weather:";
   cityQuery.innerHTML = "City: " + searchCity;
@@ -80,7 +83,6 @@ const renderCurrentWeather = (weather, searchCity) => {
   wind_speedQuery.innerHTML = "Wind Speed: " + wind_speed + " mph";
   uviQuery.innerHTML = "UVI: " + uvi;
   humidityQuery.innerHTML = "Humidity: " + humidity;
-  iconQuery.innerHTML = icon;
 };
 
 
