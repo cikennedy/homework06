@@ -73,7 +73,7 @@ const renderCurrentWeather = (weather, searchCity) => {
   var humidity = weather.main.humidity;
 
   var weatherIcon = document.createElement("img");
-  weatherIcon.setAttribute("src", `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`);
+  weatherIcon.setAttribute("src", `${apiURL}/img/w/${weather.weather[0].icon}.png`);
   weatherIcon.setAttribute("id", `weather-icon`);
   currentWeatherContainer.appendChild(weatherIcon);
 
@@ -88,6 +88,11 @@ const renderCurrentWeather = (weather, searchCity) => {
 
 
 // Create function for five day forecast 
+const getForecast = () => {
+
+}
+
+const renderForecast 
 
 
 // // Create function to fetch current weather 
