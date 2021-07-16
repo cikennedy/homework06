@@ -63,21 +63,21 @@ const getCurrentWeather = (city) => {
 
 const renderCurrentWeather = (weather, searchCity) => {
   // clear the container
-  currentWeatherContainer.textContent= "";
+  // currentWeatherContainer.textContent= "";
 
   console.log(weather);
 
-  var temp = weather.temp;
-  var wind_speed = weather.wind_speed;
+  var temp = weather.main.temp;
+  var wind_speed = weather.wind.speed;
   var uvi = weather.uvi;
-  var humidity = weather.humidity;
+  var humidity = weather.main.humidity;
   var icon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
-  currentWeatherHeader.innerHTML = "Current Weather:"
-  cityQuery.innerHTML = searchCity;
-  dateQuery.innerHTML = date;
-  tempQuery.innerHTML = "Temperature:" + temp + " °F";
-  wind_speedQuery.innerHTML = "Wind Speed: " + wind_speed;
+  currentWeatherHeader.innerHTML = "Current Weather:";
+  cityQuery.innerHTML = "City: " + searchCity;
+  dateQuery.innerHTML = "Date: " + date;
+  tempQuery.innerHTML = "Temperature: " + temp + " °F";
+  wind_speedQuery.innerHTML = "Wind Speed: " + wind_speed + " mph";
   uviQuery.innerHTML = "UVI: " + uvi;
   humidityQuery.innerHTML = "Humidity: " + humidity;
   iconQuery.innerHTML = icon;
