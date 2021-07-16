@@ -32,15 +32,15 @@ var date = dayjs().format('MM/DD/YYYY');
 // var icon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
 
-const searchFormHandler = (event) => {
+async function searchFormHandler(event) {
   // Stop the browser from submitting the form so we can do so with JavaScript
   event.preventDefault();
   // Gather the data from the form elements on the page
-  const city = searchInput.value.trim();
+  const city = await searchInput.value.trim();
 
   if (city) {
     getCurrentWeather(city);
-    getForecast(city);
+    // getForecast(city);
     searchHistory.unshift({city});
     searchInput.value = "";
   } else {
