@@ -31,12 +31,11 @@ var date = dayjs().format('MM/DD/YYYY');
 // var humidity = weather.humidity;
 // var icon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
-
-async function searchFormHandler(event) {
+const searchFormHandler = (event) => {
   // Stop the browser from submitting the form so we can do so with JavaScript
   event.preventDefault();
   // Gather the data from the form elements on the page
-  const city = await searchInput.value.trim();
+  const city = searchInput.value.trim();
 
   if (city) {
     getCurrentWeather(city);
