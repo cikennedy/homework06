@@ -74,6 +74,7 @@ const renderCurrentWeather = (weather, searchCity) => {
 
   var weatherIcon = document.createElement("img");
   weatherIcon.setAttribute("src", `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`);
+  weatherIcon.setAttribute("id", `weather-icon`);
   currentWeatherContainer.appendChild(weatherIcon);
 
   currentWeatherHeader.innerHTML = "Current Weather:";
