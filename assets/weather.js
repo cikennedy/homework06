@@ -3,10 +3,14 @@ var apiKey = "1ab858a5505d5908820588cc1ee2f9e5";
 var apiURL = "https://api.openweathermap.org";
 var searchHistory = [];
 
-// Variables for query selectors for current weather and search 
+// Variables for search query selectors 
 var searchForm = document.querySelector('#search-form');
 var searchInput = document.querySelector('#search-input');
-var searchButton = document.querySelector('#search-button')
+var searchButton = document.querySelector('#search-button');
+
+// Variables for current weather query selectors 
+var currentWeatherContainer = document.querySelector('#current-weather-container');
+var currentWeatherHeader = document.querySelector('#current-weather-header');
 var cityQuery = document.querySelector('#city-name');
 var dateQuery = document.querySelector('#date');
 var tempQuery = document.querySelector('#temp');
@@ -43,47 +47,76 @@ const searchFormHandler = (event) => {
     alert("Please enter a city to search.");
   }
   // add save search and past search functions, include those here 
+  saveSearch();
 };
 
 const saveSearch = () => {
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 };
 
-
-
-
-
-
-
-// Create function to fetch current weather 
-searchButton.addEventListener('click', function(event) { 
-  fetch(`${apiURL}/data/2.5/weather?q=${searchInput}&appid=${apiKey}`)
+const getCurrentWeather = (city) => {
+  fetch(`${apiURL}/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`)
   .then(res => res.json())
   .then(searchData => {
-    var searchCity = searchData.city;
-    var temp = searchData.temp;
-    var wind_speed = searchData.wind_speed;
-    var uvi = searchData.uvi;
-    var humidity = searchData.humidity;
-    var icon = `https://openweathermap.org/img/w/${searchData.searchData[0].icon}.png`;
+    renderCurrentWeather(searchData, city);
+  });
+}
 
-    searchInput.value ="";
-    cityQuery.innerHTML = searchCity;
-    dateQuery.innerHTML = date;
-    tempQuery.innerHTML = "Temperature:" + temp + " °F";
-    wind_speedQuery.innerHTML = "Wind Speed: " + wind_speed;
-    uviQuery.innerHTML = "UVI: " + uvi;
-    humidityQuery.innerHTML = "Humidity: " + humidity;
-    iconQuery.innerHTML = icon;
+const renderCurrentWeather = (weather, searchCity) => {
+  // clear the container
+  currentWeatherContainer.textContent= "";
 
+  console.log(weather);
 
+  var temp = weather.temp;
+  var wind_speed = weather.wind_speed;
+  var uvi = weather.uvi;
+  var humidity = weather.humidity;
+  var icon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
-  })
-})
+  currentWeatherHeader.innerHTML = "Current Weather:"
+  cityQuery.innerHTML = searchCity;
+  dateQuery.innerHTML = date;
+  tempQuery.innerHTML = "Temperature:" + temp + " °F";
+  wind_speedQuery.innerHTML = "Wind Speed: " + wind_speed;
+  uviQuery.innerHTML = "UVI: " + uvi;
+  humidityQuery.innerHTML = "Humidity: " + humidity;
+  iconQuery.innerHTML = icon;
+};
 
-// Create function for current weather 
 
 // Create function for five day forecast 
+
+
+// // Create function to fetch current weather 
+// searchButton.addEventListener('click', function(event) { 
+//   fetch(`${apiURL}/data/2.5/weather?q=${searchInput}&appid=${apiKey}`)
+//   .then(res => res.json())
+//   .then(searchData => {
+//     var searchCity = searchData.city;
+//     var temp = searchData.temp;
+//     var wind_speed = searchData.wind_speed;
+//     var uvi = searchData.uvi;
+//     var humidity = searchData.humidity;
+//     var icon = `https://openweathermap.org/img/w/${searchData.searchData[0].icon}.png`;
+
+//     searchInput.value ="";
+//     cityQuery.innerHTML = searchCity;
+//     dateQuery.innerHTML = date;
+//     tempQuery.innerHTML = "Temperature:" + temp + " °F";
+//     wind_speedQuery.innerHTML = "Wind Speed: " + wind_speed;
+//     uviQuery.innerHTML = "UVI: " + uvi;
+//     humidityQuery.innerHTML = "Humidity: " + humidity;
+//     iconQuery.innerHTML = icon;
+
+
+
+//   })
+// })
+
+
+
+
 
 
 searchForm.addEventListener('submit', searchFormHandler);
