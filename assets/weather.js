@@ -46,7 +46,7 @@ const searchFormHandler = (event) => {
 
   if (city) {
     getCurrentWeather(city);
-    // getForecast(city);
+    getForecast(city);
     searchHistory.unshift({city});
     searchInput.value = "";
   } else {
@@ -105,8 +105,7 @@ const getForecast = (city) => {
 }
 
 const renderForecast = (weather) => {
-  forecastContainer.textContent = "";
-  forecastHeadertextContent = "5 Day Forecast:"
+  // forecastContainer.textContent = "";
 
   var forecast = weather.list;
     for (var i=5; i < forecast.length; i=i+8){
@@ -117,6 +116,7 @@ const renderForecast = (weather) => {
       forecastIcon.setAttribute("id", `weather-icon`);
       forecastContainer.appendChild(forecastIcon);
 
+      forecastHeader.innerHTML = "5 Day Forecast:";
       forecastDateQuery.innerHTML = dayjs(dayForecast.dt).format('MM/DD/YYYY');
       forecastTempQuery.innerHTML = dayForecast.main.temp + " °F";
       forecastHumidQuery.innerHTML = dayForecast.main.humidity;
