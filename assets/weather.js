@@ -20,12 +20,15 @@ var humidityQuery = document.querySelector('#humidity');
 var iconQuery = document.querySelector('#weather-icon');
 
 var todayContainer = document.querySelector('#today');
-var forecastContainer = document.querySelector('#forecast');
+var forecastContainer = document.querySelector('#forecast-container');
 var forecastHeader = document.querySelector('#forecast-header');
 var searchHistoryContainer = document.querySelector('#history');
 
 // Variables for 5 day forecast 
 var forecastDateQuery = document.querySelector('#forecast-date');
+var forecastTempQuery = document.querySelector('#forecast-temp');
+var forecastHumidQuery = document.querySelector('#forecast-humid');
+var forecastIcon = document.querySelector('#forecast-icon');
 
 // Current weather variables 
 var date = dayjs().format('MM/DD/YYYY');
@@ -115,7 +118,8 @@ const renderForecast = (weather) => {
       forecastContainer.appendChild(forecastIcon);
 
       forecastDateQuery.innerHTML = dayjs(dayForecast.dt).format('MM/DD/YYYY');
-      
+      forecastTempQuery.innerHTML = dayForecast.main.temp + " °F";
+      forecastHumidQuery.innerHTML = dayForecast.main.humidity;
     }
 }
 
