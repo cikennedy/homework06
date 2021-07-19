@@ -21,7 +21,11 @@ var iconQuery = document.querySelector('#weather-icon');
 
 var todayContainer = document.querySelector('#today');
 var forecastContainer = document.querySelector('#forecast');
+var forecastHeader = document.querySelector('#forecast-header');
 var searchHistoryContainer = document.querySelector('#history');
+
+// Variables for 5 day forecast 
+var forecastDateQuery = document.querySelector('#forecast-date');
 
 // Current weather variables 
 var date = dayjs().format('MM/DD/YYYY');
@@ -47,6 +51,7 @@ const searchFormHandler = (event) => {
   }
   // add save search and past search functions, include those here 
   saveSearch();
+  //pastSearch();
 };
 
 const saveSearch = () => {
@@ -88,11 +93,31 @@ const renderCurrentWeather = (weather, searchCity) => {
 
 
 // Create function for five day forecast 
-const getForecast = () => {
-
+const getForecast = (city) => {
+  fetch(`${apiURL}/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
+  .then(res => res.json())
+  .then(searchData => {
+    renderForecast(searchData);
+  });
 }
 
-const renderForecast 
+const renderForecast = (weather) => {
+  forecastContainer.textContent = "";
+  forecastHeadertextContent = "5 Day Forecast:"
+
+  var forecast = weather.list;
+    for (var i=5; i < forecast.length; i=i+8){
+      var dayForecast = forecast[i];
+
+      var forecastIcon = document.createElement("img");
+      forecastIcon.setAttribute("src", `${apiURL}/img/w/${dayForecast.weather[0].icon}.png`);
+      forecastIcon.setAttribute("id", `weather-icon`);
+      forecastContainer.appendChild(forecastIcon);
+
+      forecastDateQuery.innerHTML = dayjs(dayForecast.dt).format('MM/DD/YYYY');
+      
+    }
+}
 
 
 // // Create function to fetch current weather 
