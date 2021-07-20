@@ -20,15 +20,18 @@ var humidityQuery = document.querySelector('#humidity');
 var iconQuery = document.querySelector('#weather-icon');
 
 var todayContainer = document.querySelector('#today');
-var forecastContainer = document.querySelector('#forecast-container');
-var forecastHeader = document.querySelector('#forecast-header');
-var searchHistoryContainer = document.querySelector('#history');
+
 
 // Variables for 5 day forecast 
+var forecastContainer = document.querySelector('#forecast-container');
+var forecastHeader = document.querySelector('#forecast-header');
 var forecastDateQuery = document.querySelector('#forecast-date');
 var forecastTempQuery = document.querySelector('#forecast-temp');
 var forecastHumidQuery = document.querySelector('#forecast-humid');
 var forecastIcon = document.querySelector('#forecast-icon');
+
+// Variables for search history
+var searchHistoryContainer = document.querySelector('#history');
 
 // Current weather variables 
 var date = dayjs().format('MM/DD/YYYY');
@@ -107,8 +110,12 @@ const getForecast = (city) => {
 const renderForecast = (weather) => {
   // forecastContainer.textContent = "";
 
-  var forecast = weather.list;
-    for (var i=5; i < forecast.length; i=i+8){
+  // start and end dates for the five day forecast 
+  var startDate = dayjs().add(1, 'day').startOf('day').unix();
+  var endDate = dayjs().add(6, 'day').startOf('day').unix();
+
+  
+  for (var i=0; i < forecast.length; i=i+8){
       var dayForecast = forecast[i];
 
       var forecastIcon = document.createElement("img");
