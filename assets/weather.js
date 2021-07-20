@@ -40,7 +40,7 @@ var saveSearch = () => {
 var pastSearch = (pastSearch) => {
   pastSearchElement = document.createElement("button");
   pastSearchElement.textContent = pastSearch;
-  pastSearchElement.classList = "d-flex w-100 btn-light border p-2";
+  pastSearchElement.classList = "d-flex w-100 btn-primary border p-2";
   pastSearchElement.setAttribute("data-city", pastSearch);
   pastSearchElement.setAttribute("type", "submit");
 
@@ -70,6 +70,7 @@ var renderCurrentWeather = (weather, searchCity) => {
   // clears the container 
   currentWeatherContainer.textContent = "";
   searchedCity.textContent = searchCity;
+  searchedCity.classList = "text-dark text-center";
 
   // date element using moment.js 
   var currentDate = document.createElement("span");
@@ -85,16 +86,16 @@ var renderCurrentWeather = (weather, searchCity) => {
   searchInput.appendChild(weatherIcon);
 
   var tempElement = document.createElement("span");
-  tempElement.textContent = "Temperature: " + weather.main.temp + " °F";
-  tempElement.classList = "list-group-item";
+  tempElement.textContent = "Temp: " + weather.main.temp + " °F";
+  tempElement.classList = "list-group-item text-dark";
 
   var humidityElement = document.createElement("span");
   humidityElement.textContent = "Humidity: " + weather.main.humidity;
-  humidityElement.classList = "list-group-item";
+  humidityElement.classList = "list-group-item text-dark";
 
   var windElement = document.createElement("span");
-  windElement.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
-  windElement.classList = "list-group-item";
+  windElement.textContent = "Wind Speed: " + weather.wind.speed + " mph";
+  windElement.classList = "list-group-item text-dark";
 
   // append all elements to the current weather container 
   currentWeatherContainer.appendChild(tempElement);
@@ -119,7 +120,7 @@ var getUVI = (lat, lon) => {
 var renderUVI = (index) => {
   var uviElement = document.createElement("div");
   uviElement.textContent = "UV Index: ";
-  uviElement.classList = "list-group-item";
+  uviElement.classList = "list-group-item text-dark";
 
   uviValue = document.createElement("span");
   uviValue.textContent = index.value;
@@ -151,6 +152,7 @@ var getForecast = (city) => {
 var renderForecast = (weather) => {
   forecastContainer.textContent = "";
   forecastHeader.textContent = "5-Day Forecast:";
+  forecastHeader.classList = "text-center";
 
   var forecast = weather.list;
   // for loop to provide the five day forecast 
@@ -158,7 +160,7 @@ var renderForecast = (weather) => {
     var dailyForecast = forecast[i];
 
     var forecastElement = document.createElement("div");
-    forecastElement.classList = "card bg-primary text-light m-2";
+    forecastElement.classList = "card bg-info text-muted m-2";
 
     // use moment.js to create date 
     var forecastDate = document.createElement("h5");
@@ -181,7 +183,7 @@ var renderForecast = (weather) => {
 
     var forecastHumidElement = document.createElement("span");
     forecastHumidElement.classList = "card-body text-center";
-    forecastHumidElement.textContent = dailyForecast.main.humidity;
+    forecastHumidElement.textContent = "Humidity: " + dailyForecast.main.humidity;
     forecastElement.appendChild(forecastHumidElement);
 
     forecastContainer.appendChild(forecastElement);

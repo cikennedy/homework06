@@ -17,9 +17,16 @@
 
   ## Usage
 
+  GitHub Repository: 
+
   [Github Repository](https://github.com/cikennedy/weather-dashboard)
 
+  GitHub Pages Link: 
+
   [Deployed Application](https://cikennedy.github.io/weather-dashboard/)
+
+  ![Chicago Search](assets/Chicago.png)
+  ![San Diego Search](assets/SanDiego.png)
 
   ## License
 
