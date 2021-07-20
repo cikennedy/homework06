@@ -13,6 +13,8 @@
 
   * [Badges](#badges)
 
+  * [Credits](#credits)
+
   * [Questions](#questions)
 
   ## Usage
@@ -35,6 +37,10 @@
   ## Badges
 
   ![GitHub License](https://img.shields.io/badge/license-MIT-yellow.svg)
+
+  ## Credits
+
+  This application uses [Moment.js](https://momentjs.com/) for date functionality, as well as using [Bootstrap](https://getbootstrap.com/) styling and templates. 
 
   ## Questions
 
